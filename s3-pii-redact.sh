@@ -3,14 +3,14 @@
 # s3-pii-redact.sh— S3 Event + Lambda + Comprehend
 #
 # Usage:
-#   ./s3-pii-redact.shsetup              # create 2 buckets, IAM role, Lambda, S3 trigger
-#   ./s3-pii-redact.shtest               # upload chat-001.txt, read chat-001-redacted.txt
-#   ./s3-pii-redact.shstatus             # show existing Option 2 resources
-#   ./s3-pii-redact.shcleanup --dry-run  # preview what will be deleted, deletes NOTHING
-#   ./s3-pii-redact.shcleanup            # preview -> type DELETE -> delete everything
-#   ./s3-pii-redact.shcleanup --yes      # preview -> delete without asking (-y = --yes)
-#   ./s3-pii-redact.shall                # setup -> test -> cleanup (still asks for DELETE)
-#   ./s3-pii-redact.shall -y             # setup -> test -> cleanup without asking (-y = --yes)
+#   ./s3-pii-redact.sh setup              # create 2 buckets, IAM role, Lambda, S3 trigger
+#   ./s3-pii-redact.sh test               # upload chat-001.txt, read chat-001-redacted.txt
+#   ./s3-pii-redact.sh status             # show existing Option 2 resources
+#   ./s3-pii-redact.sh cleanup --dry-run  # preview what will be deleted, deletes NOTHING
+#   ./s3-pii-redact.sh cleanup            # preview -> type DELETE -> delete everything
+#   ./s3-pii-redact.sh cleanup --yes      # preview -> delete without asking (-y = --yes)
+#   ./s3-pii-redact.sh all                # setup -> test -> cleanup (still asks for DELETE)
+#   ./s3-pii-redact.sh all -y             # setup -> test -> cleanup without asking (-y = --yes)
 #
 # Requires: AWS CLI v2, python3 (to build the zip), permissions for S3, IAM, Lambda, Logs.
 # This script NEVER touches Demo 1 or Demo 2 resources (S3 Object Lambda).
