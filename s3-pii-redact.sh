@@ -5,7 +5,7 @@
 # Usage:
 #   ./s3-pii-redact.sh setup              # create 2 buckets, IAM role, Lambda, S3 trigger
 #   ./s3-pii-redact.sh test               # upload chat-001.txt, read chat-001-redacted.txt
-#   ./s3-pii-redact.sh status             # show existing Option 2 resources
+#   ./s3-pii-redact.sh status             # show existing Lab resources
 #   ./s3-pii-redact.sh cleanup --dry-run  # preview what will be deleted, deletes NOTHING
 #   ./s3-pii-redact.sh cleanup            # preview -> type DELETE -> delete everything
 #   ./s3-pii-redact.sh cleanup --yes      # preview -> delete without asking (-y = --yes)
@@ -280,34 +280,34 @@ console_policies() {
     --query "AttachedPolicies[?starts_with(PolicyName, 'AWSLambdaBasicExecutionRole-')].PolicyArn" --output text | tr '\t' '\n' | grep -v '^None$' || true
 }
 preview_cleanup() {
-  log "[DRY-RUN] Xem trước những gì sẽ bị xoá (Demo 1, Demo 2 giữ nguyên)"
-  local r p roles objs b
+  local tag="${1:-}" r p roles objs b
+  log "Xem trước những gì sẽ bị xoá"
   if bucket_exists "$RAW_BUCKET"; then
-    echo "  [DRY-RUN] sẽ gỡ S3 Event Notification trên ${RAW_BUCKET}"; CLEANUP_FOUND=1
+    echo "  ${tag:+[$tag] }sẽ gỡ S3 Event Notification trên ${RAW_BUCKET}"; CLEANUP_FOUND=1
   fi
   if function_exists; then
-    echo "  [DRY-RUN] sẽ xoá Lambda ${FUNCTION}"; CLEANUP_FOUND=1
+    echo "  ${tag:+[$tag] }sẽ xoá Lambda ${FUNCTION}"; CLEANUP_FOUND=1
   fi
   if log_group_exists; then
-    echo "  [DRY-RUN] sẽ xoá log group ${LOG_GROUP}"; CLEANUP_FOUND=1
+    echo "  ${tag:+[$tag] }sẽ xoá log group ${LOG_GROUP}"; CLEANUP_FOUND=1
   fi
   roles="$(find_roles)"
   while read -r r; do
     [[ -n "$r" ]] || continue
-    echo "  [DRY-RUN] sẽ xoá IAM role ${r} (gỡ policy đang gắn, xoá inline policy)"; CLEANUP_FOUND=1
+    echo "  ${tag:+[$tag] }sẽ xoá IAM role ${r} (gỡ policy đang gắn, xoá inline policy)"; CLEANUP_FOUND=1
     while read -r p; do
-      [[ -n "$p" ]] && echo "  [DRY-RUN] sẽ xoá customer managed policy ${p##*/}"
+      [[ -n "$p" ]] && echo "  ${tag:+[$tag] }sẽ xoá customer managed policy ${p##*/}"
     done < <(console_policies "$r")
   done <<<"$roles"
   for b in "$RAW_BUCKET" "$RED_BUCKET"; do
     bucket_exists "$b" || continue
-    echo "  [DRY-RUN] sẽ empty và xoá bucket ${b}, gồm:"
+    echo "  ${tag:+[$tag] }sẽ empty và xoá bucket ${b}, gồm:"
     objs="$(aws s3 rm "s3://${b}" --recursive --dryrun)"
-    if [[ -n "$objs" ]]; then sed 's/^/    /' <<<"$objs"; else echo "    (bucket trống)"; fi
+    if [[ -n "$objs" ]]; then sed 's/^[[:space:]]*(dryrun) /    /' <<<"$objs"; else echo "    (bucket trống)"; fi
     CLEANUP_FOUND=1
   done
-  echo "  [DRY-RUN] sẽ xoá thư mục local ${WORKDIR}"
-  [[ "$CLEANUP_FOUND" -eq 1 ]] || ok "Không còn tài nguyên Option 2 nào trên AWS"
+  echo "  ${tag:+[$tag] }sẽ xoá thư mục local ${WORKDIR}"
+  [[ "$CLEANUP_FOUND" -eq 1 ]] || ok "Không còn tài nguyên Lab nào trên AWS"
 }
 delete_role() {
   local r="$1" p
@@ -345,7 +345,9 @@ cmd_cleanup() {
     -y) mode="--yes" ;;   # -y is short for --yes
     *) die "Tham số không hợp lệ: '${mode}' (chỉ nhận --dry-run, --yes hoặc -y)" ;;
   esac
-  preview_cleanup
+  local tag=""
+  [[ "$mode" == "--dry-run" ]] && tag="DRY-RUN"
+  preview_cleanup "$tag"
   if [[ "$mode" == "--dry-run" ]]; then
     log "Dry-run xong, chưa xoá gì."
     return 0
@@ -360,7 +362,7 @@ cmd_cleanup() {
     read -r -p "  Gõ DELETE để xoá đúng danh sách trên: " answer
     [[ "$answer" == "DELETE" ]] || die "Đã huỷ, không xoá gì."
   fi
-  log "Xoá toàn bộ Option 2"
+  log "Xoá toàn bộ Lab"
   local roles r p b policies=()
   roles="$(find_roles)"            # fetch before deleting the function, because the role is read from the function config
   while read -r r; do
@@ -392,7 +394,7 @@ cmd_cleanup() {
     ok "Đã empty và xoá bucket ${b}"
   done
   rm -rf "$WORKDIR"
-  log "Đã xoá sạch Option 2"
+  log "Đã xoá sạch Lab"
 }
 # ----------------------------------- Main ------------------------------------
 case "${1:-}" in
