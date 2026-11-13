@@ -11,3 +11,35 @@ Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi 
 | ③ | Lambda gọi `DetectPiiEntities` để phát hiện entity PII | Lambda → Comprehend |
 | ④ | Lambda ghi `chats/chat-001-redacted.txt` sang bucket redacted | Lambda |
 | ⑤ | `GetObject` bản đã che, chỉ quyền đọc | QC provider |
+
+## Hướng dẫn chạy lab
+
+Chuẩn bị: AWS CLI v2, `python3` (dùng để đóng gói zip), và credentials có quyền trên S3, IAM, Lambda, CloudWatch Logs. Script dùng region `us-east-1` và tự lấy `ACCOUNT_ID` từ `aws sts get-caller-identity`.
+
+```bash
+chmod +x s3-pii-redact.sh
+./s3-pii-redact.sh setup
+```
+
+Lệnh `setup` sẽ lần lượt:
+
+1. Tạo 2 bucket `chat-raw-<account-id>` và `chat-redacted-<account-id>`, bật block public access.
+2. Tạo IAM role `pii-redact-role` với quyền tối thiểu: đọc bucket gốc, ghi bucket redacted, gọi `comprehend:DetectPiiEntities`.
+3. Đóng gói và tạo Lambda `pii-redact` (Python 3.13, 256 MB, timeout 30 giây) với biến môi trường `DEST_BUCKET`.
+4. Gắn S3 Event Notification `ObjectCreated:*` trên bucket gốc để tự gọi Lambda.
+
+Kiểm tra sau khi setup:
+
+```bash
+./s3-pii-redact.sh test     # upload chat-001.txt và đọc bản đã che
+./s3-pii-redact.sh status   # xem tài nguyên đang có
+```
+
+Dọn dẹp khi xong (script hỏi gõ `DELETE`, hoặc thêm `--yes` để bỏ qua xác nhận):
+
+```bash
+./s3-pii-redact.sh cleanup --dry-run   # xem trước, không xoá gì
+./s3-pii-redact.sh cleanup
+```
+
+Script chỉ tạo/xoá tài nguyên của lab này; bucket, role và Lambda của các demo khác không bị đụng tới.
