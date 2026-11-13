@@ -1,0 +1,7 @@
+2026-11-13 15:20 Customer: Hi, my name is David Chen. My package arrived damaged.
+2026-11-13 15:21 Agent: Sorry to hear that. Can you confirm your phone number and shipping address?
+2026-11-13 15:22 Customer: Phone is 312-555-0147. Address is 88 Lake Shore Drive, Chicago, IL 60611.
+2026-11-13 15:23 Customer: You can email the return label to david.chen@example.net.
+2026-11-13 15:24 Agent: For the replacement we need a card for the express shipping fee.
+2026-11-13 15:25 Customer: Charge my Mastercard 5555 5555 5555 4444, expiry 08/27, CVV 456.
+2026-11-13 15:26 Agent: Thanks David. The replacement will ship on November 15.

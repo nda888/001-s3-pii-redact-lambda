@@ -1,0 +1,7 @@
+2026-11-13 14:02 Customer: Hello, this is Maria Garcia. I want to change my delivery address.
+2026-11-13 14:03 Agent: Sure. Can you confirm your phone number and the new address?
+2026-11-13 14:04 Customer: My phone is 425-555-0199. New address is 742 Pine Avenue, Springfield, OR 97477.
+2026-11-13 14:05 Customer: Please send the confirmation to maria.garcia@example.org.
+2026-11-13 14:06 Agent: I also need to update the card on file for the extra shipping fee.
+2026-11-13 14:07 Customer: Use my Visa 4111 1111 1111 1111, expiry 12/28, CVV 123.
+2026-11-13 14:08 Agent: Done, Maria. Your order will arrive on November 20.

@@ -1,0 +1,5 @@
+2026-11-12 09:15 Customer: Hi, I'm John Smith. My order has not arrived yet.
+2026-11-12 09:16 Agent: Sorry about that. Can you confirm your address and phone number?
+2026-11-12 09:17 Customer: Ship it to 100 Main Street, Any City, WA 98121. Call me at 206-555-0100.
+2026-11-12 09:18 Customer: You can also email me at john.smith@example.com.
+2026-11-12 09:19 Agent: Thanks John, we will resend the package today.
