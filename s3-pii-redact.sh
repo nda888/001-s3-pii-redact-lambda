@@ -232,7 +232,7 @@ cmd_setup() {
   step2_role
   step3_lambda
   step4_trigger
-  log "Setup Option 2 xong"
+  log "Setup Lab xong"
 }
 # ----------------------------------- Test ------------------------------------
 cmd_test() {
@@ -263,7 +263,7 @@ EOF
 # --------------------------------- Status ------------------------------------
 cmd_status() {
   check_prereqs
-  log "Tài nguyên Option 2"
+  log "Tài nguyên Lab"
   bucket_exists "$RAW_BUCKET" && ok "Bucket ${RAW_BUCKET}" || warn "Không có bucket ${RAW_BUCKET}"
   bucket_exists "$RED_BUCKET" && ok "Bucket ${RED_BUCKET}" || warn "Không có bucket ${RED_BUCKET}"
   function_exists && ok "Lambda ${FUNCTION}" || warn "Không có Lambda ${FUNCTION}"
