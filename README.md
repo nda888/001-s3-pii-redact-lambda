@@ -7,7 +7,7 @@ Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi 
 | Bước | Hành động | Ai thực hiện |
 |------|-----------|--------------|
 | ① | `PutObject` file chat (còn PII) vào bucket gốc | App chat |
-| ② | S3 phát `ObjectCreated` event bất đồng bộ (nét đứt) tới Lambda | S3 |
+| ② | S3 tự gọi Lambda sau khi lưu file, App không phải chờ (nét đứt) | S3 |
 | ③ | Lambda gọi `DetectPiiEntities` để phát hiện entity PII | Lambda → Comprehend |
 | ④ | Lambda ghi `chats/chat-002-redacted.txt` sang bucket redacted | Lambda |
 | ⑤ | `GetObject` bản đã che, chỉ quyền đọc | QC provider |
