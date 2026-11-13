@@ -14,6 +14,8 @@ Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi 
 
 ## Hướng dẫn chạy lab
 
+### Dùng Account Cá Nhân để test
+
 Chuẩn bị: AWS CLI v2, `python3` (dùng để đóng gói zip), và credentials có quyền trên S3, IAM, Lambda, CloudWatch Logs. Script dùng region `us-east-1` và tự lấy `ACCOUNT_ID` từ `aws sts get-caller-identity`.
 
 ```bash
@@ -42,4 +44,4 @@ Dọn dẹp khi xong (script hỏi gõ `DELETE`, hoặc thêm `--yes` để bỏ
 ./s3-pii-redact.sh cleanup
 ```
 
-Script chỉ tạo/xoá tài nguyên của lab này; bucket, role và Lambda của các demo khác không bị đụng tới.
+Script chỉ tạo/xoá tài nguyên của lab này, những service khác không bị đụng tới.
