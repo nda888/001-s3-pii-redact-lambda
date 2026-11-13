@@ -1,10 +1,8 @@
 # s3-pii-redact-lambda
 
-Redact Personally Identifiable Information (PII) **on write**: file chat được ghi vào bucket gốc, S3 Event kích hoạt Lambda, Lambda gọi Amazon Comprehend `DetectPiiEntities` rồi ghi bản đã che sang bucket redacted. Người đọc không vào được bucket gốc.
+Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi ghi file: mỗi khi có file chat mới vào bucket gốc, S3 Event tự gọi Lambda. Lambda gửi nội dung sang Amazon Comprehend (DetectPiiEntities) để tìm PII, thay PII bằng dấu *, rồi lưu bản đã che sang bucket redacted. Người đọc chỉ được vào bucket redacted, không truy cập được bucket gốc.
 
 ![S3 Event PII Redact Lambda Trigger](image/s3-pii-redact-lambda-trigger.png)
-
-Sơ đồ nguồn (chỉnh sửa bằng draw.io): [`diagram/S3-Event-PII-Redact-Lambda-Trigger.drawio`](diagram/S3-Event-PII-Redact-Lambda-Trigger.drawio)
 
 ## Luồng hoạt động
 
