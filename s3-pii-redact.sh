@@ -16,7 +16,7 @@
 # This script NEVER touches Demo 1 or Demo 2 resources (S3 Object Lambda).
 # =============================================================================
 set -Eeuo pipefail
-# ----------------------------- Option 2 configuration ------------------------
+# ----------------------------- Configuration ------------------------
 export AWS_REGION="us-east-1"
 export AWS_DEFAULT_REGION="us-east-1"
 ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
