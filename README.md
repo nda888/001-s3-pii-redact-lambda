@@ -18,6 +18,8 @@ Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi 
 
 Chuẩn bị: AWS CLI v2, `python3` (dùng để đóng gói zip), và credentials có quyền trên S3, IAM, Lambda, CloudWatch Logs. Script dùng region `us-east-1` và tự lấy `ACCOUNT_ID` từ `aws sts get-caller-identity`.
 
+Có thể dùng Cloud Shell nếu muốn test nhanh.
+
 ```bash
 chmod +x s3-pii-redact.sh
 ./s3-pii-redact.sh setup
