@@ -9,8 +9,6 @@
 #   ./s3-pii-redact.sh cleanup --dry-run  # preview what will be deleted, deletes NOTHING
 #   ./s3-pii-redact.sh cleanup            # preview -> type DELETE -> delete everything
 #   ./s3-pii-redact.sh cleanup --yes      # preview -> delete without asking (-y = --yes)
-#   ./s3-pii-redact.sh all                # setup -> test -> cleanup (still asks for DELETE)
-#   ./s3-pii-redact.sh all -y             # setup -> test -> cleanup without asking (-y = --yes)
 #
 # Requires: AWS CLI v2, python3 (to build the zip), permissions for S3, IAM, Lambda, Logs.
 # This script NEVER touches Demo 1 or Demo 2 resources (S3 Object Lambda).
@@ -402,12 +400,5 @@ case "${1:-}" in
   test)    cmd_test ;;
   status)  cmd_status ;;
   cleanup) cmd_cleanup "${2:-}" ;;
-  all)
-    # Validate arguments before setup, so a typo fails before creating any resources.
-    case "${2:-}" in
-      ""|-y|--yes|--dry-run) ;;
-      *) die "Tham số không hợp lệ: '${2}' (chỉ nhận --dry-run, --yes hoặc -y)" ;;
-    esac
-    cmd_setup; cmd_test; cmd_cleanup "${2:-}" ;;
-  *)       sed -n '2,17p' "$0"; exit 1 ;;   # print the "Usage" block at the top of the file
+  *)       sed -n '2,15p' "$0"; exit 1 ;;   # print the "Usage" block at the top of the file
 esac
