@@ -16,8 +16,7 @@ Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi 
 
 ### ⚠️ DÙNG ACCOUNT CÁ NHÂN ĐỂ TEST
 
-Chuẩn bị: AWS CLI v2, `python3` (dùng để đóng gói zip), và credentials có quyền trên S3, IAM, Lambda, CloudWatch Logs. Script dùng region `us-east-1` và tự lấy `ACCOUNT_ID` từ `aws sts get-caller-identity`.
-
+Chuẩn bị: AWS CLI v2, set IAM với quyền tối thiểu
 Có thể dùng Cloud Shell nếu muốn test nhanh.
 
 ```bash
