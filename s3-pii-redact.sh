@@ -9,9 +9,6 @@
 #   ./s3-pii-redact.sh cleanup --dry-run  # preview what will be deleted, deletes NOTHING
 #   ./s3-pii-redact.sh cleanup            # preview -> type DELETE -> delete everything
 #   ./s3-pii-redact.sh cleanup --yes      # preview -> delete without asking (-y = --yes)
-#
-# Requires: AWS CLI v2, python3 (to build the zip), permissions for S3, IAM, Lambda, Logs.
-# This script NEVER touches Demo 1 or Demo 2 resources (S3 Object Lambda).
 # =============================================================================
 set -Eeuo pipefail
 # ----------------------------- Configuration ------------------------
