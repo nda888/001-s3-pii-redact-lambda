@@ -43,7 +43,7 @@
         <mxCell id="app" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=14;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.client;labelPerimeter=1;" value="App chat" vertex="1">
           <mxGeometry height="64" width="64" x="120" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="qc" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=14;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.users;labelPerimeter=1;" value="QC provider&lt;br&gt;&lt;small&gt;chỉ có quyền đọc&lt;/small&gt;" vertex="1">
+        <mxCell id="qc" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=14;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.users;labelPerimeter=1;" value="External Service provider&lt;br&gt;&lt;small&gt;chỉ có quyền đọc&lt;/small&gt;" vertex="1">
           <mxGeometry height="64" width="64" x="839" y="730" as="geometry" />
         </mxCell>
         <mxCell id="e1" edge="1" parent="1" source="app" style="html=1;endArrow=block;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;labelBackgroundColor=default;defaultLabelBackgroundColor=page;" target="src">
@@ -58,7 +58,7 @@
         <mxCell id="s5" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;fontColor=#1B1F24;" value="⑤ GetObject (chỉ đọc)" vertex="1">
           <mxGeometry height="22" width="170" x="882" y="688" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=left;spacingLeft=10;fillColor=#FFF9DB;strokeColor=#E9D58A;fontColor=#1B1F24;" value="🔒 QC provider không có quyền vào bucket gốc&lt;br&gt;Nét đứt = S3 tự gọi Lambda sau khi lưu file, App không phải chờ" vertex="1">
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=left;spacingLeft=10;fillColor=#FFF9DB;strokeColor=#E9D58A;fontColor=#1B1F24;" value="🔒 External Service provider không có quyền vào bucket gốc&lt;br&gt;Nét đứt = S3 tự gọi Lambda sau khi lưu file, App không phải chờ" vertex="1">
           <mxGeometry height="70" width="520" x="270" y="700" as="geometry" />
         </mxCell>
       </root>
