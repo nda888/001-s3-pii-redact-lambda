@@ -16,8 +16,8 @@ Che thông tin cá nhân (PII – Personally Identifiable Information) ngay khi 
 
 ### ⚠️ DÙNG ACCOUNT CÁ NHÂN ĐỂ TEST
 
-Chuẩn bị: AWS CLI v2, set IAM với quyền tối thiểu
-Có thể dùng Cloud Shell nếu muốn test nhanh.
+- Chuẩn bị: AWS CLI v2, set IAM với quyền tối thiểu
+- Có thể dùng Cloud Shell nếu muốn test nhanh.
 
 ```bash
 chmod +x s3-pii-redact.sh
