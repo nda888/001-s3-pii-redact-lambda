@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="title" parent="1" style="text;html=1;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;fontColor=#1B1F24;" value="S3 Event PII Redact Lambda Trigger" vertex="1">
-          <mxGeometry height="34" width="840" x="240" y="240" as="geometry" />
+          <mxGeometry height="34" width="420" x="450" y="240" as="geometry" />
         </mxCell>
         <mxCell id="aws" parent="1" style="swimlane;startSize=26;fillColor=#f8cecc;strokeColor=#b85450;html=1;fontSize=14;align=left;spacingLeft=10;" value="AWS Cloud · us-east-1" vertex="1">
           <mxGeometry height="380" width="640" x="320" y="290" as="geometry" />
@@ -56,7 +56,7 @@
           <mxGeometry height="22" width="115" x="195" y="418" as="geometry" />
         </mxCell>
         <mxCell id="s5" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;verticalAlign=middle;fontColor=#1B1F24;" value="⑤ GetObject (chỉ đọc)" vertex="1">
-          <mxGeometry height="22" width="170" x="882" y="688" as="geometry" />
+          <mxGeometry height="22" width="150" x="882" y="688" as="geometry" />
         </mxCell>
         <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=14;align=left;spacingLeft=10;fillColor=#FFF9DB;strokeColor=#E9D58A;fontColor=#1B1F24;" value="🔒 External Service provider không có quyền vào bucket gốc&lt;br&gt;Nét đứt = S3 tự gọi Lambda sau khi lưu file, App không phải chờ" vertex="1">
           <mxGeometry height="70" width="520" x="270" y="700" as="geometry" />
