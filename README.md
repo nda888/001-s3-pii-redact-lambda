@@ -39,11 +39,9 @@ Kiểm tra sau khi setup:
 ./s3-pii-redact.sh status   # xem tài nguyên đang có
 ```
 
-Dọn dẹp khi xong (script hỏi gõ `DELETE`, hoặc thêm `--yes` để bỏ qua xác nhận):
+Dọn dẹp khi xong Lab (script hỏi gõ `DELETE`, hoặc thêm `--yes` để bỏ qua xác nhận):
 
 ```bash
 ./s3-pii-redact.sh cleanup --dry-run   # xem trước, không xoá gì
-./s3-pii-redact.sh cleanup
+./s3-pii-redact.sh cleanup -y
 ```
-
-Script chỉ tạo/xoá tài nguyên của lab này, những service khác không bị đụng tới.
